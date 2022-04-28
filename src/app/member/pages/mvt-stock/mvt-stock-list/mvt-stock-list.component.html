@@ -1,0 +1,32 @@
+<div class="col m-3">
+  <div class="row m-3">
+    <div class="col-md-8 p-0">
+      <h1>Mouvements du stock</h1>
+    </div>
+    <div class="col-md-4 p-0 text-right">
+      <app-button-actions [isImportShow]="false" [isNewShow]="false"></app-button-actions>
+    </div>
+  </div>
+  <div class="col">
+    <div class="accordion" id="accordionPanelsStayOpenExample">
+      <div class="accordion-item border-none">
+        <div class="accordion-header" id="panelsStayOpen-headingOne">
+          <div data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true" aria-controls="panelsStayOpen-collapseOne">
+            <app-mvt-stock-article></app-mvt-stock-article>
+          </div>
+        </div>
+        <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingOne" style="max-height: 300px; overflow-y: scroll">
+          <div class="accordion-body">
+            <app-mvt-stock-item></app-mvt-stock-item>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row mb-3">
+    <div class="col-md-12 text-center">
+      <app-pagination></app-pagination>
+    </div>
+  </div>
+
+</div>

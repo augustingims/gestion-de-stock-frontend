@@ -1,1 +1,124 @@
-/* You can add global styles to this file, and also import other style files */
+@import "~bootstrap/dist/css/bootstrap.min.css";
+@import "~@fortawesome/fontawesome-free/css/all.css";
+
+
+body{
+  background-color: #eff2f5 !important;
+}
+
+.backgroung-grey{
+  background-color: #eff2f5 !important;
+}
+
+.fill-content {
+  height: 100%;
+  height: -webkit-fill-available;
+  height: -moz-available;
+  height: fill-available;
+}
+
+.border-none {
+  border: none !important;
+}
+
+.min-height-80 {
+  min-height: 80px;
+}
+
+a {
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+.list-group-item.active a {
+  color: #fff;
+}
+
+.no-padding{
+  padding-left: 0px !important;
+  padding-right: 0px !important;
+  padding-bottom: 0px !important;
+  padding-top: 0px !important;
+}
+
+.custom-border-right{
+  border-right: 2px solid #d0d3d6 !important;
+}
+
+.custom-border{
+  border: solid #d0d3d6;
+  border-radius: 5px;
+}
+
+.blue-color{
+  color: #037bfe !important;
+}
+
+.hidden {
+  display: none;
+}
+
+.loader-overlay {
+  position: absolute;
+  width: 100%;
+  z-index: 500000;
+  top: 0;
+}
+
+.loader {
+  height: 10px;
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+  background-color: #FFF;
+}
+
+.loader:before {
+  display: block;
+  position: absolute;
+  content: "";
+  left: -200px;
+  width: 200px;
+  height: 10px;
+  background-color: #007bff;
+  animation: loading 2s linear infinite;
+}
+
+@keyframes loading {
+  from {
+    left: -200px;
+    width: 30%;
+  }
+  50% {
+    width: 30%;
+  }
+  70% {
+    width: 70%;
+  }
+  80% {
+    left: 50%;
+  }
+  95% {
+    left: 120%;
+  }
+  to {
+    left: 100%;
+  }
+}
+
+#posts {
+  margin: 20px 0;
+  list-style-type: none;
+}
+
+#about {
+  margin: 20px;
+}
+
+.alerts {
+  margin: 20px 0;
+  color: red;
+}
