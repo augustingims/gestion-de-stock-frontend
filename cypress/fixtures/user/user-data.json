@@ -1,0 +1,39 @@
+{
+  "id": 3,
+  "nom": "TeamDev Tech",
+  "prenom": "123455",
+  "email": "augustingims@gmail.com",
+  "dateDeNaissance": "2022-05-04T23:05:33.660021Z",
+  "moteDePasse": "$2a$10$oz1c9IHepNG3lvcgVEXaBOKG0Kp84rDlQ7Hiw9uO/Z0vDuDJgzCQ2",
+  "adresse": {
+    "adresse1": "De Rosnay Street",
+    "adresse2": "Maurice",
+    "ville": "Beau Bassin",
+    "codePostale": "71501",
+    "pays": "Maurice"
+  },
+  "photo": null,
+  "entreprise": {
+    "id": 3,
+    "nom": "TeamDev Tech",
+    "description": "Entreprise Informatique",
+    "adresse": {
+      "adresse1": "De Rosnay Street",
+      "adresse2": "Maurice",
+      "ville": "Beau Bassin",
+      "codePostale": "71501",
+      "pays": "Maurice"
+    },
+    "codeFiscal": "123455",
+    "photo": null,
+    "email": "augustingims@gmail.com",
+    "numTel": "57588179",
+    "steWeb": null
+  },
+  "roles": [
+    {
+      "id": 3,
+      "roleName": "ADMIN"
+    }
+  ]
+}

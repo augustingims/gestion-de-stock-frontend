@@ -1,0 +1,16 @@
+{
+  "id": 1,
+  "codeArticle": "456467",
+  "designation": "Pepsi",
+  "prixUnitaireHt": 78,
+  "tauxTva": 12,
+  "prixUnitaireTtc": 87.36,
+  "photo": "https://farm66.staticflickr.com/65535/52058907065_b0eaf911a1_z.jpg",
+  "categorie": {
+    "id": 1,
+    "code": "Alimentation",
+    "designation": "Categorie Aliment",
+    "idEntreprise": 3
+  },
+  "idEntreprise": 3
+}

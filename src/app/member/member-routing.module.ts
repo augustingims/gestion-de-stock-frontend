@@ -2,11 +2,13 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { MemberComponent } from './member.component';
 import { layoutsRoutes } from './layouts/layouts.route';
+import { UserRouterAccesService } from '../core/auth/user-router-acces.service';
 
 const routes: Routes = [
   {
     path: '',
     component: MemberComponent,
+    canActivateChild: [UserRouterAccesService],
     children: [
       {
         path: '',
@@ -14,7 +16,7 @@ const routes: Routes = [
       },
       {
         path: 'statistiques',
-        loadChildren: () => import('./pages/statistics/statistics.module').then(m => m.StatisticsModule)
+        loadChildren: () => import('./pages/statistics/statistics.module').then(m => m.StatisticsModule),
       },
       {
         path: 'articles',

@@ -9,9 +9,9 @@ import { PublicRoutingModule } from './public-routing.module';
   declarations: [],
   imports: [
     CommonModule,
-    PublicRoutingModule,
     LoginModule,
-    RegisterModule
+    RegisterModule,
+    PublicRoutingModule
   ]
 })
 export class PublicModule { }

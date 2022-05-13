@@ -14,9 +14,9 @@ const routes: Routes = [
 @NgModule({
   declarations: [ChangePasswordComponent],
   imports: [
+    SharedMemberModule,
     CommonModule,
     RouterModule.forChild(routes),
-    SharedMemberModule,
   ],
   exports: [RouterModule]
 })

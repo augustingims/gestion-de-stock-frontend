@@ -1,23 +1,28 @@
 <div class="container my-container">
-  <div class="card justify-content-center">
-    <div class="card-body">
-      <h3 class="card-title text-center">S'authentifier</h3>
-      <div class="form-floating mb-3">
-        <input type="email" class="form-control" id="floatingInput" placeholder="E-mail">
-        <label for="floatingInput">E-mail</label>
-      </div>
-      <div class="form-floating mb-3">
-        <input type="password" class="form-control" id="floatingPassword" placeholder="Mot de passe">
-        <label for="floatingPassword">Mot de passe</label>
-      </div>
-      <div class="mb-3 d-flex justify-content-between">
-        <button type="button" class="btn btn-link" routerLink="/register">S'inscrire</button>
-        <button type="button" class="btn btn-primary">
-          <i class="fas fa-check"></i>&nbsp;
-          Se connecter
-        </button>
+  <form name="loginForm" role="form" [formGroup]="loginForm" (ngSubmit)="login()">
+    <div class="card justify-content-center">
+      <div class="card-body">
+        <h3 class="card-title text-center">S'authentifier</h3>
+        <div class="alert alert-danger" *ngIf="errorMessage">
+          {{errorMessage}}
+        </div>
+        <div class="form-floating mb-3">
+          <input type="email" class="form-control" id="floatingInput" placeholder="E-mail" formControlName="login">
+          <label for="floatingInput">E-mail</label>
+        </div>
+        <div class="form-floating mb-3">
+          <input type="password" class="form-control" id="floatingPassword" placeholder="Mot de passe" formControlName="password">
+          <label for="floatingPassword">Mot de passe</label>
+        </div>
+        <div class="mb-3 d-flex justify-content-between">
+          <button type="button" class="btn btn-link" routerLink="/register">S'inscrire</button>
+          <button type="submit" class="btn btn-primary">
+            <i class="fas fa-check"></i>&nbsp;
+            Se connecter
+          </button>
+        </div>
       </div>
     </div>
-  </div>
+  </form>
 </div>
 

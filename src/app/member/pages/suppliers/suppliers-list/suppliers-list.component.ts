@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {Router} from '@angular/router';
+import { SupplierService } from '../service/supplier.service';
+import { FournisseurDto } from '../../../../../gs-api/src/models/fournisseur-dto';
+import {Observable} from 'rxjs';
 
 @Component({
   selector: 'app-suppliers-list',
@@ -8,15 +11,28 @@ import {Router} from '@angular/router';
 })
 export class SuppliersListComponent implements OnInit {
 
+  suppliers$: Observable<FournisseurDto[] | []>;
+  errorMsg = '';
+
   constructor(
     private router: Router,
+    private supplierService: SupplierService,
   ) { }
 
   ngOnInit(): void {
+    this.suppliers$ = this.supplierService.findAll();
   }
 
-  newSupplier(){
+  newSupplier(): void{
     this.router.navigate(['fournisseurs/nouveau']);
+  }
+
+  handleDelete(event: any): void {
+    if (event === 'success') {
+      this.suppliers$ = this.supplierService.findAll();
+    } else {
+      this.errorMsg = event;
+    }
   }
 
 }

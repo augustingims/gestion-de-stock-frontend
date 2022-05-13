@@ -1,24 +1,24 @@
 <div class="row mb-1 me-0 custom-border">
   <div class="col-md-1 custom-border-right p-1 mt-1 mb-1 text-center">
-    <img src="assets/product.png" width="80px" height="80px" >
+    <img [src]="articleDto.photo ? articleDto.photo : 'assets/product.png'" alt="Article" width="80px" height="80px" >
   </div>
   <div class="col-md-5 custom-border-right mt-1 mb-1">
     <div class="col">
       <div class="row">
         <div class="col-md-1"><i class="fas fa-info-circle blue-color"></i></div>
-        <div class="col-md-11">Code article</div>
+        <div class="col-md-11">{{ articleDto.codeArticle}}</div>
       </div>
       <div class="row">
         <div class="col-md-1"><i class="fas fa-info-circle blue-color"></i></div>
-        <div class="col-md-11">designation</div>
+        <div class="col-md-11">{{ articleDto.designation}}</div>
       </div>
       <div class="row">
         <div class="col-md-1"><i class="fas fa-dollar-sign blue-color"></i></div>
-        <div class="col-md-11">Prix HT</div>
+        <div class="col-md-11">{{ articleDto.prixUnitaireHt}}</div>
       </div>
       <div class="row">
         <div class="col-md-1"><i class="fas fa-dollar-sign blue-color"></i></div>
-        <div class="col-md-11">Prix TTC</div>
+        <div class="col-md-11">{{ articleDto.prixUnitaireTtc}}</div>
       </div>
     </div>
   </div>
@@ -29,8 +29,8 @@
       </div>
       <div class="col-md-10">
         <div class="row">
-          <div class="col-md-12">Code categorie</div>
-          <div class="col-md-12">Description categorie</div>
+          <div class="col-md-12">{{ articleDto.categorie?.code }}</div>
+          <div class="col-md-12">{{ articleDto.categorie?.designation }}</div>
         </div>
       </div>
     </div>
@@ -38,13 +38,13 @@
   <div class="col-md-3 mt-1 mb-1 ">
     <div class="row">
       <div class="col-md-4">
-        <button type="button" class="btn btn-link">
+        <button type="button" class="btn btn-link" (click)="updateArticle()">
           <i class="fas fa-pencil-alt"></i>&nbsp;
           Modifier
         </button>
       </div>
       <div class="col-md-4">
-        <button type="button" class="btn btn-link">
+        <button type="button" class="btn btn-link text-danger" data-bs-toggle="modal" [attr.data-bs-target]="'#modalDeleteArticle' + articleDto.id">
           <i class="fas fa-trash"></i>&nbsp;
           Supprimer
         </button>
@@ -57,4 +57,28 @@
       </div>
     </div>
   </div>
+
+  <div class="modal fade" id="modalDeleteArticle{{ articleDto.id }}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel"
+       aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="staticBackdropLabel">Confirmation</h5>
+          <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          Etes vous-sur de vouloir supprimer cet article?
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+            <i class="fas fa-ban"></i>&nbsp;Annuler</button>
+          <button type="button" class="btn btn-danger" data-bs-dismiss="modal" (click)="confirmAndDeleteArticle()">
+            <i class="fas fa-trash-alt"></i>&nbsp;Supprimer</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
 </div>

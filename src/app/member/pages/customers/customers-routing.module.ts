@@ -17,7 +17,7 @@ const routes: Routes = [
     }
   },
   {
-    path: ':id',
+    path: ':id/edit',
     component: NewCostumerSupplierComponent,
     data: {
       origin: 'client'

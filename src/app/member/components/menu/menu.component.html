@@ -10,7 +10,7 @@
       <div class="accordion-body no-padding">
         <div class="card">
           <ul class="list-group list-group-flush">
-            <li class="list-group-item"  *ngFor="let submenu of menu.subMenu" routerLinkActive="active">
+            <li class="list-group-item"  *ngFor="let submenu of menu.subMenu" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
               <a href="javascript:void(0);" [routerLink]="submenu.url">
                 <i class="{{submenu.icon}}"></i> &nbsp;
                 {{submenu.title}}

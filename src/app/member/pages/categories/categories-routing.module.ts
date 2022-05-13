@@ -13,7 +13,7 @@ const routes: Routes = [
     component: CategoriesNewComponent,
   },
   {
-    path: ':idCategory',
+    path: ':idCategory/edit',
     component: CategoriesNewComponent,
   }
 ];

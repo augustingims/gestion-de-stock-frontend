@@ -3,43 +3,40 @@
     <div class="col-md-12 mb-3 mt-3">
       <h2>Nouvelle commande {{origin}}</h2>
     </div>
-    <!--<div class="alert alert-danger" *ngIf="errorMsg.length">-->
-      <!--<div *ngFor="let msg of errorMsg">-->
-        <!--<span> {{ msg }}</span>-->
-      <!--</div>-->
-    <!--</div>-->
+    <div class="alert alert-danger" *ngIf="errorMsg.length">
+      <div *ngFor="let msg of errorMsg">
+        <span> {{ msg }}</span>
+      </div>
+    </div>
     <div class="row p-3 custom-border">
       <div class="col-md-5 custom-border-right">
         <form>
           <div class="form-group">
-            <input type="text" class="form-control" name="codeCmd" placeholder="Code commande" >
+            <input type="text" class="form-control" name="codeCmd" placeholder="Code commande" [(ngModel)]="codeCommande">
           </div>
           <div class="form-group">
-            <input type="text" class="form-control" placeholder="Date commande">
-          </div>
-          <div class="form-group">
-            <select class="form-control" name="cltFrs">
-              <option>Selectionner un </option>
-              <!--<option *ngFor="let obj of listClientsFournisseurs" [ngValue]="obj">-->
-                <!--{{ obj.nom }}&nbsp;{{ obj.prenom }}-->
-              <!--</option>-->
+            <select class="form-select" aria-label="cltFrs select example"  name="cltFrs" [(ngModel)]="selectedClientFournisseur" [title]="'Selectionner un  '+ origin">
+              <option>Selectionner un  {{origin}}</option>
+              <option *ngFor="let obj of listClientsFournisseurs" [ngValue]="obj">
+                {{ obj.nom }}&nbsp;{{ obj.prenom }}
+              </option>
             </select>
           </div>
         </form>
       </div>
-      <div class="col-md-5 custom-border-right" >
+      <div class="col-md-5 custom-border-right" *ngIf="selectedClientFournisseur.nom">
         <div class="col">
           <div class="row">
             <div class="col-md-1"><i class="fas fa-info-circle blue-color"></i></div>
-            <div class="col-md-10">Nom</div>
+            <div class="col-md-10">{{ selectedClientFournisseur.nom }}</div>
           </div>
           <div class="row">
             <div class="col-md-1"><i class="fas fa-info-circle blue-color"></i></div>
-            <div class="col-md-10">Prenom</div>
+            <div class="col-md-10">{{ selectedClientFournisseur.prenom }}</div>
           </div>
           <div class="row">
             <div class="col-md-1"><i class="fas fa-phone-alt blue-color"></i></div>
-            <div class="col-md-10"> Tel </div>
+            <div class="col-md-10"> {{ selectedClientFournisseur.numTel }} </div>
           </div>
           <div class="row">
             <div class="col-md-1"><i class="fas fa-hourglass-half blue-color"></i></div>
@@ -47,58 +44,55 @@
           </div>
         </div>
       </div>
-      <div class="col-md-2 text-center">
-        <img [src]="'assets/product.png'" class="rounded-circle" width="150px"
-             height="150px" />
+      <div class="col-md-2 text-center" *ngIf="selectedClientFournisseur.nom">
+        <img [src]="selectedClientFournisseur.photo ? selectedClientFournisseur.photo :  'assets/product.png' " class="rounded-circle" width="100px"
+             height="100px" alt="ClientFournisseur photo" />
       </div>
     </div>
     <div class="row mt-2 p-3 custom-border">
       <form class="row">
         <div class="col-auto">
           <label for="codeAtricle" class="visually-hidden">Code article</label>
-          <input type="text" id="codeAtricle" class="form-control" placeholder="Code article" >
-          <div *ngIf="false" class="autocomplete shadow p-3 mb-5 bg-white rounded">
-            <p class="p-1">
-              codeArticle &nbsp; designation
+          <input type="text" id="codeAtricle" class="form-control" name="codeArticle" placeholder="Code article" [(ngModel)]="codeArticle" (input)="filtrerArticle()">
+          <div *ngIf="codeArticle.length && !articleNotYetSelected" class="autocomplete shadow p-3 mb-5 bg-white rounded">
+            <p class="p-1" *ngFor="let article of listArticle"
+               (click)="selectArticleClick(article)"
+            >
+              {{ article.codeArticle }}&nbsp; {{ article.designation }}
             </p>
           </div>
         </div>
         <div class="col-auto">
           <label for="Quantite" class="visually-hidden">Quantite</label>
-          <input type="text" class="form-control" placeholder="Quantite" id="Quantite" >
+          <input type="text" class="form-control" placeholder="Quantite" name="Quantite" id="Quantite" [(ngModel)]="quantite" >
         </div>
         <div class="col-auto">
           <label for="price" class="visually-hidden">Prix unitaire</label>
-          <input type="text" class="form-control" id="price" placeholder="Prix unitaire">
+          <input type="text" class="form-control" id="price" placeholder="Prix unitaire" name="price" [(ngModel)]="searchedArticle.prixUnitaireTtc">
         </div>
         <div class="col-auto">
-          <button type="button" class="btn btn-success mb-3"><i class="fas fa-plus"></i></button>
+          <button type="button" class="btn btn-success mb-3" (click)="addLigneOrder()"><i class="fas fa-plus"></i></button>
         </div>
       </form>
     </div>
     <div class="row mt-2 p-3 custom-border" style="max-height: 300px;overflow-y: scroll">
       <div class="col-md-12">
-        <app-cmd-item></app-cmd-item>
-        <app-cmd-item></app-cmd-item>
-        <app-cmd-item></app-cmd-item>
+        <app-cmd-item *ngFor="let ligne of lignesCommande" [ligneOrder]="ligne"></app-cmd-item>
       </div>
     </div>
     <div class="row mt-2 p-3 custom-border ">
       <div class="col-md-12 text-right">
-        <h3>Total de la commande: 0</h3>
+        <h3>Total de la commande: {{ totalCommande }}</h3>
       </div>
     </div>
   </div>
   <div class="col-md-12 text-end mt-2">
     <button class="btn btn-danger me-3" (click)="cancelClick()">
-      <i class="fas fa-ban"></i>&nbsp;
-      Annuler
+      <i class="fas fa-ban"></i>&nbsp;Annuler
     </button>
-    <button class="btn btn-primary">
-      <i class="fas fa-save"></i>&nbsp;
-      Enregitrer
+    <button class="btn btn-primary" (click)="saveOrder()">
+      <i class="fas fa-save"></i>&nbsp;Enregitrer
     </button>
   </div>
-
 </div>
 

@@ -6,13 +6,16 @@
     <div class="col-md-4 text-end">
       <app-button-actions (clickEvent)="newArticle()"></app-button-actions>
     </div>
+    <div class="alert alert-danger" *ngIf="errorMsg">
+      {{ errorMsg }}
+    </div>
   </div>
   <div class="row">
     <div class="col m-3">
-      <app-article-item></app-article-item>
+      <app-article-item *ngFor="let article of articles$ | async" [articleDto]="article" (deleteResult)="handleDelete($event)"></app-article-item>
     </div>
   </div>
-  <div class="row m-3 ">
+  <div class="row m-3">
     <div class="col-md-12 text-center">
       <app-pagination></app-pagination>
     </div>

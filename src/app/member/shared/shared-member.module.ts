@@ -5,6 +5,7 @@ import { PaginationComponent } from '../components/pagination/pagination.compone
 import { ButtonActionsComponent } from '../components/button-actions/button-actions.component';
 import { CustomerSupplierItemComponent } from '../components/customer-supplier-item/customer-supplier-item.component';
 import { NewCostumerSupplierComponent } from '../components/new-costumer-supplier/new-costumer-supplier.component';
+import { SharedModule } from '../../shared/shared.module';
 
 
 @NgModule({
@@ -16,9 +17,11 @@ import { NewCostumerSupplierComponent } from '../components/new-costumer-supplie
     NewCostumerSupplierComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    SharedModule
   ],
   exports: [
+    SharedModule,
     FooterComponent,
     PaginationComponent,
     ButtonActionsComponent,

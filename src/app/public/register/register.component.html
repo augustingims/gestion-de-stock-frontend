@@ -1,54 +1,63 @@
 <div class="container my-container">
   <div class="card justify-content-center">
     <div class="card-body">
-      <h3 class="card-title text-center">S'inscrire</h3>
-      <div class="form-floating mb-3">
-        <input type="text" class="form-control" id="floatingName" placeholder="Nom">
-        <label for="floatingName">Nom</label>
-      </div>
-      <div class="form-floating mb-3">
-        <input type="text" class="form-control" id="floatingTaxCode" placeholder="Code fiscal">
-        <label for="floatingTaxCode">Code fiscal</label>
-      </div>
-      <div class="form-floating mb-3">
-        <input type="email" class="form-control" id="floatingEmail" placeholder="E-mail">
-        <label for="floatingEmail">E-mail</label>
-      </div>
-      <div class="form-floating mb-3">
-        <input type="text" class="form-control" id="floatingAddress1" placeholder="Adresse 1">
-        <label for="floatingAddress1">Adresse 1</label>
-      </div>
-      <div class="form-floating mb-3">
-        <input type="email" class="form-control" id="floatingAddress2" placeholder="Adresse 2">
-        <label for="floatingAddress2">Adresse 2</label>
-      </div>
-      <div class="form-floating mb-3">
-        <input type="text" class="form-control" id="floatingCity" placeholder="Ville">
-        <label for="floatingCity">Ville</label>
-      </div>
-      <div class="form-floating mb-3">
-        <input type="text" class="form-control" id="floatingCode" placeholder="Code postal">
-        <label for="floatingCode">Code postal</label>
-      </div>
-      <div class="form-floating mb-3">
-        <input type="text" class="form-control" id="floatingCountry" placeholder="Pays">
-        <label for="floatingCountry">Pays</label>
-      </div>
-      <div class="form-floating mb-3">
-        <input type="password" class="form-control" id="floatingPassword" placeholder="Mot de passe">
-        <label for="floatingPassword">Mot de passe</label>
-      </div>
-      <div class="form-floating mb-3">
-        <input type="password" class="form-control" id="floatingConfirmPassword" placeholder="Confirmer Mot de passe">
-        <label for="floatingConfirmPassword">Confirmer Mot de passe</label>
-      </div>
-      <div class="mb-3 d-flex justify-content-between">
-        <button type="button" class="btn btn-link" routerLink="/login">Se connecter</button>
-        <button type="button" class="btn btn-primary">
-          <i class="fas fa-check"></i>&nbsp;
-          S'inscrire
-        </button>
-      </div>
+      <form novalidate id="registerForm" role="form" #registerForm="ngForm" (ngSubmit)="createEntreprise()">
+        <h3 class="card-title text-center">S'inscrire</h3>
+
+        <div class="alert alert-danger" *ngIf="errorsMsg.length > 0">
+          <div *ngFor="let msg of errorsMsg">
+            <span >{{msg}}</span>
+          </div>
+        </div>
+
+        <div class="form-floating mb-3">
+          <input type="text" class="form-control" id="floatingName" name="nom" placeholder="Nom" [(ngModel)]="entrepriseDto.nom">
+          <label for="floatingName">Nom</label>
+        </div>
+        <div class="form-floating mb-3">
+          <input type="text" class="form-control" id="floatingTaxCode" name="codeFiscal" placeholder="Code fiscal" [(ngModel)]="entrepriseDto.codeFiscal">
+          <label for="floatingTaxCode">Code fiscal</label>
+        </div>
+        <div class="form-floating mb-3">
+          <input type="email" class="form-control" id="floatingEmail" name="email" placeholder="E-mail" [(ngModel)]="entrepriseDto.email">
+          <label for="floatingEmail">E-mail</label>
+        </div>
+        <div class="form-floating mb-3">
+          <input type="text" class="form-control" id="floatingAddress1" name="adresse1" placeholder="Adresse 1" [(ngModel)]="adresseDto.adresse1">
+          <label for="floatingAddress1">Adresse 1</label>
+        </div>
+        <div class="form-floating mb-3">
+          <input type="text" class="form-control" id="floatingAddress2" name="adresse2" placeholder="Adresse 2" [(ngModel)]="adresseDto.adresse2">
+          <label for="floatingAddress2">Adresse 2</label>
+        </div>
+        <div class="form-floating mb-3">
+          <input type="text" class="form-control" id="floatingCity" name="ville" placeholder="Ville" [(ngModel)]="adresseDto.ville">
+          <label for="floatingCity">Ville</label>
+        </div>
+        <div class="form-floating mb-3">
+          <input type="text" class="form-control" id="floatingCode" name="codePostale" placeholder="Code postal" [(ngModel)]="adresseDto.codePostale">
+          <label for="floatingCode">Code postal</label>
+        </div>
+        <div class="form-floating mb-3">
+          <input type="text" class="form-control" id="floatingCountry" name="pays" placeholder="Pays" [(ngModel)]="adresseDto.pays">
+          <label for="floatingCountry">Pays</label>
+        </div>
+        <div class="form-floating mb-3">
+          <textarea rows="3" class="form-control" id="description" name="description" placeholder="Description" [(ngModel)]="entrepriseDto.description"></textarea>
+          <label for="description">Description</label>
+        </div>
+        <div class="form-floating mb-3">
+          <input type="text" class="form-control" id="floatingnumTel" name="numTel" placeholder="Numero de telephone"  [(ngModel)]="entrepriseDto.numTel">
+          <label for="floatingnumTel">Numero de telephone</label>
+        </div>
+        <div class="mb-3 d-flex justify-content-between">
+          <button type="button" class="btn btn-link" routerLink="/login">Se connecter</button>
+          <button type="submit" class="btn btn-primary">
+            <i class="fas fa-check"></i>&nbsp;
+            S'inscrire
+          </button>
+        </div>
+      </form>
     </div>
   </div>
 </div>

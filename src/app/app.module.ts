@@ -14,8 +14,8 @@ import { MemberModule } from './member/member.module';
   ],
   imports: [
     BrowserModule,
-    CoreModule,
     SharedModule,
+    CoreModule,
     MemberModule,
     PublicModule,
     AppRoutingModule
