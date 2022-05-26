@@ -35,4 +35,8 @@ export class CustomersListComponent implements OnInit {
     }
   }
 
+  trackBy(index: number, item: ClientDto): number{
+    return item.id;
+  }
+
 }

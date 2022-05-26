@@ -1,15 +1,20 @@
 import { NgModule } from '@angular/core';
-import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
-import { AuthInterceptor } from './interceptor/auth.interceptor';
+import { CommonModule } from '@angular/common';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { NgxWebstorageModule } from 'ngx-webstorage';
+import { Title } from '@angular/platform-browser';
 import { AuthExpiredInterceptor } from './interceptor/auth-expired.interceptor';
+import { AuthInterceptor } from './interceptor/auth.interceptor';
 import { ErrorHandlerInterceptor } from './interceptor/error-handler.interceptor';
-import {Title} from '@angular/platform-browser';
+import { TransferStateInterceptor } from './interceptor/transfert-state.interceptor';
 
 
 
 @NgModule({
+  declarations: [],
   imports: [
     HttpClientModule,
+    NgxWebstorageModule.forRoot({ prefix: 'app', separator: '-' })
   ],
   providers: [
     Title,
@@ -26,6 +31,11 @@ import {Title} from '@angular/platform-browser';
     {
       provide: HTTP_INTERCEPTORS,
       useClass: ErrorHandlerInterceptor,
+      multi: true
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: TransferStateInterceptor,
       multi: true
     }
   ]

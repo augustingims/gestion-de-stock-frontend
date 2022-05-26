@@ -1,4 +1,4 @@
-import {Component, Input, OnInit, Output, EventEmitter} from '@angular/core';
+import {Component, Input, OnInit, Output, EventEmitter, ChangeDetectionStrategy} from '@angular/core';
 import {ArticleDto} from '../../../../gs-api/src/models/article-dto';
 import { ArticleService } from '../../pages/articles/service/article.service';
 import {Router} from '@angular/router';
@@ -6,7 +6,8 @@ import {Router} from '@angular/router';
 @Component({
   selector: 'app-article-item',
   templateUrl: './article-item.component.html',
-  styleUrls: ['./article-item.component.scss']
+  styleUrls: ['./article-item.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ArticleItemComponent implements OnInit {
 

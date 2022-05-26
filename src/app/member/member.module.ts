@@ -1,11 +1,11 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
-import { MemberRoutingModule } from './member-routing.module';
 import { MemberComponent } from './member.component';
+import { SharedModule } from '../shared/shared.module';
 import { LayoutsModule } from './layouts/layouts.module';
 import { SharedMemberModule } from './shared/shared-member.module';
-import { SharedModule } from '../shared/shared.module';
+import { MemberRoutingModule } from './member-routing.module';
+
 
 @NgModule({
   declarations: [MemberComponent],

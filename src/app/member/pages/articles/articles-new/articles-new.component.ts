@@ -10,6 +10,8 @@ import { CategoryService } from '../../categories/service/category.service';
 import {Observable, Subscription} from 'rxjs';
 
 import SavePhotoParams = PhotosService.SavePhotoParams;
+import { JsonLdService, SeoSocialShareService } from 'ngx-seo';
+import { tap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-articles-new',
@@ -34,7 +36,9 @@ export class ArticlesNewComponent implements OnInit, OnDestroy {
     private activatedRoute: ActivatedRoute,
     private accountService: AccountService,
     private categoryService: CategoryService,
-    private photoService: PhotosService
+    private photoService: PhotosService,
+    private seoService: SeoSocialShareService,
+    private jsonLdService: JsonLdService
   ) { }
 
   ngOnInit(): void {
@@ -56,8 +60,36 @@ export class ArticlesNewComponent implements OnInit, OnDestroy {
   getArticle(): void{
     const idArticle = this.activatedRoute.snapshot.params.idArticle;
     if (idArticle) {
-      this.articleService.findArticleById(idArticle)
-        .subscribe(article => {
+      this.articleService.findArticleById(idArticle).pipe(
+        tap((article: ArticleDto) => {
+          this.seoService.setData({
+            title: `${article.codeArticle} - Gestion Stock`,
+            description: article.designation,
+            published: new Date().toDateString(),
+            author: 'Team Dev Tech',
+            type: 'website',
+          });
+
+          const jsonLdObject = this.jsonLdService.getObject('ArticlePosting', {
+            title: article.codeArticle,
+            description: article.designation,
+            datePosted: new Date().toDateString(),
+            category: article.categorie.designation,
+            hiringOrganization: this.jsonLdService.getObject('Organization', {
+              name: 'TeamDev Tech',
+              sameAs: '',
+            }),
+            articleLocation: this.jsonLdService.getObject('Place', {
+              address: {
+                addressLocality: "Maurice",
+                addressRegion: 'TX'
+              }
+            })
+          });
+          this.jsonLdService.setData(jsonLdObject);
+
+        })
+      ).subscribe(article => {
           this.articleDto = article;
           this.categorieDto = this.articleDto.categorie ? this.articleDto.categorie : {};
         });

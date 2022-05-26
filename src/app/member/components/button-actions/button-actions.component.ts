@@ -1,9 +1,10 @@
-import {Component, OnInit, EventEmitter, Output, Input} from '@angular/core';
+import {Component, OnInit, EventEmitter, Output, Input, ChangeDetectionStrategy} from '@angular/core';
 
 @Component({
   selector: 'app-button-actions',
   templateUrl: './button-actions.component.html',
-  styleUrls: ['./button-actions.component.scss']
+  styleUrls: ['./button-actions.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ButtonActionsComponent implements OnInit {
 

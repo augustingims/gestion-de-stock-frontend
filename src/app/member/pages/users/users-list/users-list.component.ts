@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {Router} from '@angular/router';
+import { UtilisateurDto } from '../../../../../gs-api/src/models/utilisateur-dto';
 
 @Component({
   selector: 'app-users-list',
@@ -17,5 +18,9 @@ export class UsersListComponent implements OnInit {
 
   newUser(): void{
     this.router.navigate(['utilisateurs/nouvel']);
+  }
+
+  trackBy(index: number, item: UtilisateurDto): number{
+    return item.id;
   }
 }

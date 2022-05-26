@@ -1,22 +1,23 @@
 <div class="col">
-  <div class="row m-3">
-    <div class="col-md-8 p-0">
-      <h1>Liste des fournisseurs</h1>
+  <ng-container *ngIf="(suppliers$ | async) as suppliers">
+    <div class="row m-3">
+      <div class="col-md-8 p-0">
+        <h1>Liste des fournisseurs</h1>
+      </div>
+      <div class="col-md-4 text-right">
+        <app-button-actions (clickEvent)="newSupplier()"></app-button-actions>
+      </div>
     </div>
-    <div class="col-md-4 text-right">
-      <app-button-actions (clickEvent)="newSupplier()"></app-button-actions>
+    <div class="col m-3">
+      <div class="alert alert-danger" *ngIf="errorMsg">
+      {{ errorMsg }}
+      </div>
+      <app-customer-supplier-item [origin]="'fournisseur'" (deleteResult)="handleDelete($event)"  *ngFor="let supplier of suppliers; trackBy: trackBy" [clientFournisseur]="supplier"></app-customer-supplier-item>
     </div>
-  </div>
-  <div class="col m-3">
-    <div class="alert alert-danger" *ngIf="errorMsg">
-    {{ errorMsg }}
+    <div class="row mb-3" *ngIf="suppliers?.length > 0">
+      <div class=" col-md-12 text-center">
+        <app-pagination></app-pagination>
+      </div>
     </div>
-    <app-customer-supplier-item [origin]="'fournisseur'" (deleteResult)="handleDelete($event)"  *ngFor="let supplier of suppliers$ | async" [clientFournisseur]="supplier"></app-customer-supplier-item>
-  </div>
-  <div class="row mb-3">
-    <div class=" col-md-12 text-center">
-      <app-pagination></app-pagination>
-    </div>
-  </div>
-
+  </ng-container>
 </div>

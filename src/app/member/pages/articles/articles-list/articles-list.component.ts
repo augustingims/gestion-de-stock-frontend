@@ -35,4 +35,8 @@ export class ArticlesListComponent implements OnInit {
     }
   }
 
+  trackBy(index: number, item: ArticleDto): number{
+    return item.id;
+  }
+
 }

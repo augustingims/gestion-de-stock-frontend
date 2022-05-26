@@ -35,4 +35,8 @@ export class SuppliersListComponent implements OnInit {
     }
   }
 
+  trackBy(index: number, item: FournisseurDto): number{
+    return item.id;
+  }
+
 }

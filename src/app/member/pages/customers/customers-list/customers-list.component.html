@@ -1,22 +1,23 @@
 <div class="col">
-  <div class="row m-3">
-    <div class="col-md-8 p-0">
-      <h1>Liste des clients</h1>
+  <ng-container *ngIf="(customers$ | async) as customers">
+    <div class="row m-3">
+      <div class="col-md-8 p-0">
+        <h1>Liste des clients</h1>
+      </div>
+      <div class="col-md-4 text-right">
+        <app-button-actions (clickEvent)="newCustomer()"></app-button-actions>
+      </div>
     </div>
-    <div class="col-md-4 text-right">
-      <app-button-actions (clickEvent)="newCustomer()"></app-button-actions>
+    <div class="col m-3">
+      <div class="alert alert-danger" *ngIf="errorMsg">
+        {{ errorMsg }}
+      </div>
+      <app-customer-supplier-item [origin]="'client'" (deleteResult)="handleDelete($event)"  *ngFor="let customer of customers; trackBy: trackBy" [clientFournisseur]="customer"></app-customer-supplier-item>
     </div>
-  </div>
-  <div class="col m-3">
-    <div class="alert alert-danger" *ngIf="errorMsg">
-      {{ errorMsg }}
+    <div class="row mb-3"  *ngIf="customers?.length > 0">
+      <div class=" col-md-12 text-center">
+        <app-pagination></app-pagination>
+      </div>
     </div>
-    <app-customer-supplier-item [origin]="'client'" (deleteResult)="handleDelete($event)"  *ngFor="let customer of customers$ | async" [clientFournisseur]="customer"></app-customer-supplier-item>
-  </div>
-  <div class="row mb-3">
-    <div class=" col-md-12 text-center">
-      <app-pagination></app-pagination>
-    </div>
-  </div>
-
+  </ng-container>
 </div>

@@ -1,51 +1,52 @@
 <div class="col">
-  <div class="row m-3">
-    <div class="col-md-8 p-0">
-      <h1>Liste des categories</h1>
-    </div>
-    <div class="col-md-4 text-right">
-      <app-button-actions (clickEvent)="newCategory()"></app-button-actions>
-    </div>
-  </div>
-  <div class="col m-3">
-    <div class="row col-md-12 alert alert-danger" *ngIf="errorMsgs">
-      {{ errorMsgs }}
-    </div>
-    <div class="row col-md-12 custom-border mb-3 p-3" *ngFor="let category of categories$ | async">
-      <div class="col-md-3 custom-border-right">
-        {{category.code}}
+  <ng-container *ngIf="(categories$ | async) as categories">
+    <div class="row m-3">
+      <div class="col-md-8 p-0">
+        <h1>Liste des categories</h1>
       </div>
-      <div class="col-md-4 custom-border-right">
-        {{category.designation}}
+      <div class="col-md-4 text-right">
+        <app-button-actions (clickEvent)="newCategory()"></app-button-actions>
       </div>
-      <div class="col-md-3">
-        <div class="row">
-          <div class="col-md-4">
-            <button type="button" class="btn btn-link" (click)="updateCategory(category.id)">
-              <i class="fas fa-pencil-alt"></i>&nbsp;Modifier
-            </button>
-          </div>
-          <div class="col-md-4">
-            <button type="button" class="btn btn-link text-danger" data-bs-toggle="modal" data-bs-target="#modalDeleteCat" (click)="selectCategoryForDelete(category.id)">
-              <i class="fas fa-trash-alt"></i>&nbsp;Supprimer
-            </button>
-          </div>
-          <div class="col-md-4">
-            <button type="button" class="btn btn-link ">
-              <i class="far fa-list-alt"></i>&nbsp;Details
-            </button>
+    </div>
+    <div class="col m-3">
+      <div class="row col-md-12 alert alert-danger" *ngIf="errorMsgs">
+        {{ errorMsgs }}
+      </div>
+      <div class="row col-md-12 custom-border mb-3 p-3" *ngFor="let category of categories; trackBy: trackBy">
+        <div class="col-md-3 custom-border-right">
+          {{category.code}}
+        </div>
+        <div class="col-md-4 custom-border-right">
+          {{category.designation}}
+        </div>
+        <div class="col-md-3">
+          <div class="row">
+            <div class="col-md-4">
+              <button type="button" class="btn btn-link" (click)="updateCategory(category.id)">
+                <i class="fas fa-pencil-alt"></i>&nbsp;Modifier
+              </button>
+            </div>
+            <div class="col-md-4">
+              <button type="button" class="btn btn-link text-danger" data-bs-toggle="modal" data-bs-target="#modalDeleteCat" (click)="selectCategoryForDelete(category.id)">
+                <i class="fas fa-trash-alt"></i>&nbsp;Supprimer
+              </button>
+            </div>
+            <div class="col-md-4">
+              <button type="button" class="btn btn-link ">
+                <i class="far fa-list-alt"></i>&nbsp;Details
+              </button>
+            </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
-  <div class="row mb-3" *ngIf="(categories$ | async)?.length">
-    <div class=" col-md-12 text-center">
-      <app-pagination></app-pagination>
+    <div class="row mb-3" *ngIf="categories?.length > 0">
+      <div class=" col-md-12 text-center">
+        <app-pagination></app-pagination>
+      </div>
     </div>
-  </div>
+  </ng-container>
 </div>
-
 <!-- Modal -->
 <div class="modal fade" id="modalDeleteCat" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel"
      aria-hidden="true">
@@ -68,5 +69,6 @@
       </div>
     </div>
   </div>
+  
 </div>
 

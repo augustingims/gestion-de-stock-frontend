@@ -1,10 +1,11 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {ChangeDetectionStrategy, Component, Input, OnInit} from '@angular/core';
 import { ClientDto } from '../../../../gs-api/src/models/client-dto';
 
 @Component({
   selector: 'app-cmd-customer-supplier-item',
   templateUrl: './cmd-customer-supplier-item.component.html',
-  styleUrls: ['./cmd-customer-supplier-item.component.scss']
+  styleUrls: ['./cmd-customer-supplier-item.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class CmdCustomerSupplierItemComponent implements OnInit {
 

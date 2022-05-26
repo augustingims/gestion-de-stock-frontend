@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { Menu } from './Menu';
 import { menuProperties } from '../../shared';
 import {Router} from '@angular/router';

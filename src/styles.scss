@@ -14,7 +14,7 @@ body{
   height: 100%;
   height: -webkit-fill-available;
   height: -moz-available;
-  height: fill-available;
+  height: stretch;
 }
 
 .border-none {
@@ -125,4 +125,14 @@ a:hover {
 
 .pointer{
   cursor: pointer;
+}
+
+a.no-style:link {
+  text-decoration: inherit;
+  color: inherit;
+}
+
+a.no-style:visited {
+  text-decoration: inherit;
+  color: inherit;
 }

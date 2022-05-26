@@ -51,4 +51,8 @@ export class CategoriesListComponent implements OnInit {
     this.selectedCatIdToDelete = id;
   }
 
+  trackBy(index: number, item: CategorieDto): number{
+    return item.id;
+  }
+
 }

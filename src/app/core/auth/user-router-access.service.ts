@@ -1,12 +1,12 @@
 import { Injectable } from '@angular/core';
-import {ActivatedRouteSnapshot, CanActivate, CanActivateChild, RouterStateSnapshot, UrlTree} from '@angular/router';
-import {Observable} from 'rxjs';
+import { CanActivate, CanActivateChild, ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree } from '@angular/router';
+import { Observable } from 'rxjs';
 import { AuthJwtService } from './auth-jwt.service';
 
 @Injectable({
   providedIn: 'root'
 })
-export class UserRouterAccesService implements CanActivate, CanActivateChild{
+export class UserRouterAccessService implements CanActivate, CanActivateChild {
 
   constructor(
     private authJwtService: AuthJwtService,

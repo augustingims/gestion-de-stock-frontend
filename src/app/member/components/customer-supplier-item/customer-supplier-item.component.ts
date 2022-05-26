@@ -1,4 +1,4 @@
-import {Component, Input, OnInit, Output, EventEmitter} from '@angular/core';
+import {Component, Input, OnInit, Output, EventEmitter, ChangeDetectionStrategy} from '@angular/core';
 import { CustomerService } from '../../pages/customers/service/customer.service';
 import { SupplierService } from '../../pages/suppliers/service/supplier.service';
 import {Router} from '@angular/router';
@@ -6,7 +6,8 @@ import {Router} from '@angular/router';
 @Component({
   selector: 'app-customer-supplier-item',
   templateUrl: './customer-supplier-item.component.html',
-  styleUrls: ['./customer-supplier-item.component.scss']
+  styleUrls: ['./customer-supplier-item.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class CustomerSupplierItemComponent implements OnInit {
 

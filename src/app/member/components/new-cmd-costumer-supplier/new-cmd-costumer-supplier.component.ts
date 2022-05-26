@@ -1,4 +1,4 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
+import {ChangeDetectionStrategy, Component, OnDestroy, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import { CmdCustomerSupplierService } from '../../pages/cmd-customer-supplier/service/cmd-customer-supplier.service';
 import { ArticleService } from '../../pages/articles/service/article.service';

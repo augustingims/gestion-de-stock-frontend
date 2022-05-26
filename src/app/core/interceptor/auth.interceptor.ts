@@ -3,17 +3,19 @@ import {HttpEvent, HttpHandler, HttpHeaders, HttpInterceptor, HttpRequest, HttpR
 import { LoaderService } from '../../shared/components/loader/service/loader.service';
 import {Observable} from 'rxjs';
 import {tap} from 'rxjs/operators';
+import {LocalStorageService} from 'ngx-webstorage';
 
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
 
   constructor(
     private loaderService: LoaderService,
+    private $localStorage: LocalStorageService,
   ) { }
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     this.loaderService.show();
-    const token: string | null = localStorage.getItem('access_token');
+    const token: string | null = this.$localStorage.retrieve('access_token');
     if (token) {
       req = req.clone({
         setHeaders: {
