@@ -1,5 +1,4 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
-import { Menu } from './Menu';
 import { menuProperties } from '../../shared';
 import {Router} from '@angular/router';
 
@@ -11,7 +10,6 @@ import {Router} from '@angular/router';
 export class MenuComponent implements OnInit {
 
   public menus = menuProperties;
-  private lastSelectedMenu: Menu | undefined;
 
   constructor(
     private router: Router,
