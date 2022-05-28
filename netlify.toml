@@ -2,11 +2,11 @@
   command = "npm run prerender"
   functions = "./functions"
   publish = "dist/functions/browser"
-[dev]
-  command = "npm run start"
-  functions = "./functions"
-  publish = "src"
-[[redirects]]
-  from = "/*"
-  to = "/index.html"
-  status = 200
+#[dev]
+#  command = "npm run start"
+#  functions = "./functions"
+#  publish = "src"
+#[[redirects]]
+#  from = "/*"
+#  to = "/index.html"
+#  status = 200
