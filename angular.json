@@ -198,9 +198,9 @@
             "browserTarget": "gestion-de-stock:build:production",
             "serverTarget": "gestion-de-stock:server:production",
             "routes": [
-              "/",
-              "/login",
-              "/register"
+              "/"
+              //"/login",
+              //"/register"
             ],
             "guessRoutes": false
           },
